@@ -1,132 +1,134 @@
-```markdown
-# eVOC: Vulnerable and Outdated Components Tester
+Here's a rewritten `README.md` tailored for your Tkinter-based Python vulnerability scanner GUI application, assuming the following modules are bundled with the package: `scanner.py`, `vuln_checker.py`, `license_checker.py`, and `report.py`. It also handles optional modules gracefully.
 
-## Overview
+---
 
-**Vulnerable and Outdated Components Tester (eVOC)** is a Python tool designed to help you identify security vulnerabilities and outdated dependencies in your Python projects. By leveraging the OSV (Open Source Vulnerabilities) API, eVOC scans your project's `requirements.txt` file, provides detailed vulnerability information, and suggests secure, updated versions of your dependencies.
+# Vulnerable & Outdated Python Components Scanner
 
-## Features
+A GUI tool to identify vulnerable, outdated, and potentially unsafe Python dependencies using a combination of static analysis, license checks, and other heuristics. Built with Tkinter, it allows scanning via `requirements.txt` or the active environment.
 
-*   **Requirements Parsing:** Automatically loads and parses Python package requirements from a `requirements.txt` file.
-*   **Vulnerability Detection:** Queries the OSV API to check each package for known security vulnerabilities.
-*   **Secure Version Suggestions:** Recommends the latest secure version for packages found to be vulnerable.
-*   **Reporting:** Export scan results to comprehensive CSV or JSON reports.
-*   **Interactive GUI:** A user-friendly graphical interface for easy interaction and detailed vulnerability viewing.
+## 📦 Included Modules
 
-## Installation
+The following modules are included and required:
 
-### Prerequisites
+* `scanner.py` – Parses `requirements.txt` and detects installed packages.
+* `vuln_checker.py` – Scans for known vulnerabilities in dependencies.
+* `license_checker.py` – Checks licenses of installed packages.
+* `report.py` – Exports results to CSV, JSON, and HTML formats.
 
-*   Python 3.7 or higher
+Optional modules:
 
-### Steps
+* `deprecation_checker.py` – Detects use of deprecated packages or APIs.
+* `unsafe_code_scanner.py` – Performs static code analysis for insecure patterns.
+* `typosquat_detector.py` – Detects possible typosquatting in dependencies.
 
-1.  **Clone the Repository:**
+---
 
-    ```bash
-    git clone https://github.com/fish-hue/eVOC.git
-    cd eVOC
-    ```
+## 🚀 Features
 
-2.  **Set Up a Virtual Environment:**
+* Load a `requirements.txt` or scan the current environment
+* Check for:
 
-    It's highly recommended to use a virtual environment to manage project dependencies.
+  * Known vulnerabilities (CVEs)
+  * License risks
+  * Deprecated packages
+  * Typosquatting
+  * Unsafe code using Bandit (if available)
+* Export results to CSV, JSON, or HTML
+* Multithreaded background scanning
+* Modular, extensible design
 
-    ```bash
-    python -m venv venv
-    ```
+---
 
-    *   **Activate the virtual environment:**
-        *   **Linux/macOS:**
-            ```bash
-            source venv/bin/activate
-            ```
-        *   **Windows:**
-            ```bash
-            venv\Scripts\activate
-            ```
+## 🖥️ Usage
 
-3.  **Install Dependencies:**
+### Installation
 
-    Install the required packages using pip:
+Make sure you are using Python 3.7 or newer.
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+1. Clone or download the project folder.
+2. Install dependencies:
 
-## Usage
+```bash
+pip install -r requirements.txt
+```
 
-### Running the GUI
+> Optional: Install Bandit and other tools to enable advanced features:
 
-Launch the graphical user interface by running the `gui.py` script from within the activated virtual environment:
+```bash
+pip install bandit
+```
+
+3. Run the application:
 
 ```bash
 python gui.py
 ```
 
-### Steps to Use the GUI:
+### Interface Overview
 
-1.  **Load `requirements.txt`:**
-    *   Click the "Load requirements.txt" button.
-    *   Select your project's `requirements.txt` file.
-    *   eVOC will parse the file and list the detected packages.
+* **Load requirements.txt**: Select a file to scan listed packages.
+* **Scan Environment**: Scan currently installed packages (uses `pip freeze`).
+* **Scan for Vulnerabilities**: Check packages for known vulnerabilities.
+* **Check Licenses**: Identify license types and possible issues.
+* **Suggest Updates**: View available newer versions for outdated packages.
+* **Check Deprecations**: Detect deprecated packages (if module available).
+* **Scan Unsafe Code**: Static analysis for insecure code (if module available).
+* **Detect Typosquatting**: Heuristics to detect suspicious package names.
 
-2.  **Scan for Vulnerabilities:**
-    *   After loading the requirements, click the "Scan for Vulnerabilities" button.
-    *   eVOC will query the OSV API for each package and display the number of vulnerabilities found.
+---
 
-3.  **View Vulnerability Details:**
-    *   Double-click on any package in the results list to open a window with detailed vulnerability information, including CVE IDs, severity, and references.
+## 🗂️ Output
 
-4.  **Export Reports:**
-    *   Click the "Export Report" button.
-    *   Choose to save the scan results in either CSV or JSON format.
+After a scan, results can be exported in multiple formats:
 
-### Example `requirements.txt` Format:
+* **CSV**
+* **JSON**
+* **HTML** (opens in browser)
 
-Your `requirements.txt` file should list your dependencies with their versions:
+---
 
-```ini
-flask==1.1.2
-requests==2.25.0
-numpy==1.19.5
-```
+## 🔒 Dependencies
 
-## Code Structure
+Listed in `requirements.txt`. At minimum:
 
-*   `gui.py`: The main script for the graphical user interface.
-*   `scanner.py`: Handles parsing of the `requirements.txt` file.
-*   `vuln_checker.py`: Interacts with the OSV API to check for vulnerabilities.
-*   `report.py`: Manages the generation and export of CSV and JSON reports.
+* `tkinter` (comes with standard Python)
+* `requests`
+* `packaging`
+* `bandit` *(optional, for unsafe code analysis)*
 
-## Dependencies
+---
 
-*   `requests`: For making synchronous HTTP requests.
-*   `aiohttp`: For asynchronous HTTP requests (used for potentially faster API calls).
-*   `asyncio`: The core library for running asynchronous tasks.
-*   `tkinter`: The standard Python library for creating the GUI.
-*   `packaging`: For robust parsing of package names and versions from `requirements.txt`.
-
-## Contributing
-
-We welcome contributions to eVOC! If you'd like to contribute, please follow these steps:
-
-1.  Fork the repository.
-2.  Create a new branch for your feature or bug fix.
-3.  Make your changes and commit them with clear messages.
-4.  Push your branch to your fork.
-5.  Submit a pull request to the main repository.
-
-Please ensure your code adheres to good practices and includes appropriate tests if applicable.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-*   The OSV (Open Source Vulnerabilities) project for providing the vulnerability data.
-*   The developers of the libraries used in this project.
+## 📁 Project Structure
 
 ```
+project/
+├── gui.py
+├── scanner.py
+├── vuln_checker.py
+├── license_checker.py
+├── report.py
+├── deprecation_checker.py      # optional
+├── unsafe_code_scanner.py      # optional
+├── typosquat_detector.py       # optional
+├── requirements.txt
+```
 
+---
+
+## ❓FAQ
+
+**Q: Some buttons are disabled or say "Module Missing." Why?**
+A: Those features depend on optional modules. Install them or include them in the project directory.
+
+**Q: Can I use this as a CLI tool?**
+A: Not yet. This is designed as a GUI-first tool, but modular functions may be reused in CLI contexts.
+
+---
+
+## ✅ Future Features
+
+* CLI interface
+* Auto-fix or suggestions for insecure code
+* Integration with `pip-audit` or `Safety`
+
+---
