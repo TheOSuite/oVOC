@@ -1,5 +1,3 @@
-Here's a rewritten `README.md` tailored for your Tkinter-based Python vulnerability scanner GUI application, assuming the following modules are bundled with the package: `scanner.py`, `vuln_checker.py`, `license_checker.py`, and `report.py`. It also handles optional modules gracefully.
-
 ---
 
 # Vulnerable & Outdated Python Components Scanner
