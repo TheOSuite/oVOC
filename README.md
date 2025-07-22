@@ -2,6 +2,9 @@
 
 # Vulnerable & Outdated Python Components Scanner
 
+![GitHub License](https://img.shields.io/github/license/TheOSuite/oXSS)
+![Python Version](https://img.shields.io/badge/python-3.13-blue)
+
 A GUI tool to identify vulnerable, outdated, and potentially unsafe Python dependencies using a combination of static analysis, license checks, and other heuristics. Built with Tkinter, it allows scanning via `requirements.txt` or the active environment.
 
 ## 📦 Included Modules
